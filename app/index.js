@@ -221,7 +221,7 @@ d3.json('./shapefiles/removed.geojson', function(error, removed) {
         //must be in order: minX, minY, maxX, maxY ... you have to pick these out from your envelope that you created previously
         var bbox = [-93.00432, 44.992016, -93.207787, 44.887399];
         var hexgridUnits = 'miles'; //units that will determine the width of the hex grid
-        var cellWidth = 0.8; //in the units you defined above
+        var cellWidth = 0.9; //in the units you defined above
         var hexgrid = turf.hexGrid(bbox, cellWidth, hexgridUnits); //makes the new geojson hexgrid features
 
         //COUNT THE NUMBER OF TREES IN EACH HEX BIN
