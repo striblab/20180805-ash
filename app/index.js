@@ -220,8 +220,8 @@ d3.json('./shapefiles/removed.geojson', function(error, removed) {
         //CREATE A HEX GRID
         //must be in order: minX, minY, maxX, maxY ... you have to pick these out from your envelope that you created previously
         var bbox = [-93.00432, 44.992016, -93.207787, 44.887399];
-        var hexgridUnits = 'miles' //units that will determine the width of the hex grid
-        var cellWidth = 1 //in the units you defined above
+        var hexgridUnits = 'miles'; //units that will determine the width of the hex grid
+        var cellWidth = 0.8; //in the units you defined above
         var hexgrid = turf.hexGrid(bbox, cellWidth, hexgridUnits); //makes the new geojson hexgrid features
 
         //COUNT THE NUMBER OF TREES IN EACH HEX BIN
@@ -238,15 +238,15 @@ d3.json('./shapefiles/removed.geojson', function(error, removed) {
             }
 
         //create jenks natural breaks - generates min, breaks, max ... remember for 5 categories, we only need 4 numbers
-        var numberBreaks = 9
+        var numberBreaks = 10
         var jenksbreaks = turf.jenks(hexRemoved, 'removedCount', numberBreaks);
-        var colors = ['#F2AC93', '#F2AC93', '#F28670', '#F28670', '#F2614C', '#F2614C', '#C22A22', '#C22A22', '#9C0004']
-        var transparency = [0, 1, 1, 1, 1, 1, 1, 1, 1]
+        var colors = ['#F2AC93', '#F2AC93', '#F2AC93', '#F28670', '#F28670', '#F2614C', '#F2614C', '#C22A22', '#C22A22', '#9C0004']
+        var transparency = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
-        var numberBreaks2 = 9
-        var jenksbreaks2 = turf.jenks(hexPlanted, 'plantedCount', numberBreaks2);
-        var colors2 = ['#C7E5B5', '#C7E5B5', '#9EE384', '#9EE384', '#5BBF48', '#5BBF48', '#299E3D', '#299E3D', '#118241']
-        var transparency2 = [0, 1, 1, 1, 1, 1, 1, 1, 1]
+        var numberBreaks2 = 10
+        var jenksbreaks2 = turf.jenks(hexPlanted, 'removedCount', numberBreaks2);
+        var colors2 = ['#C7E5B5', '#C7E5B5', '#C7E5B5', '#9EE384', '#9EE384', '#5BBF48', '#5BBF48', '#299E3D', '#299E3D', '#118241']
+        var transparency2 = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
         
         var numberBreaks3 = 3
@@ -284,6 +284,7 @@ d3.json('./shapefiles/removed.geojson', function(error, removed) {
             }
         });
 
+        console.log(jenksbreaks);
         console.log(jenksbreaks2);
 
 
